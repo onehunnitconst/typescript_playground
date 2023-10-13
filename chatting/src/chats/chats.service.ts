@@ -8,6 +8,7 @@ export class ChatsService {
 
   send(contents: string) {
     const message: Message = {
+      channelId: 1,
       messageId: ++ChatsService.sequence,
       contents,
       createdAt: new Date(),

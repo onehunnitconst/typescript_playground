@@ -23,7 +23,7 @@ export class ChatsGateway {
 
   @SubscribeMessage('send')
   sendMessage(@MessageBody() data: string) {
-    this.chatsService.send(data);
+
     this.server.clients.forEach((client) => {
       client.send(JSON.stringify({ event: 'receive', data }));
     });

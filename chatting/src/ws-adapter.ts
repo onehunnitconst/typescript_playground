@@ -11,7 +11,7 @@ export class WsAdapter implements WebSocketAdapter {
     return new WebSocket.Server({ port, ...options });
   }
 
-  bindClientConnect(server, callback: Function) {
+  bindClientConnect(server: any, callback: Function) {
     server.on('connection', callback);
   }
 
@@ -22,10 +22,10 @@ export class WsAdapter implements WebSocketAdapter {
   ) {
     fromEvent(client, 'message')
       .pipe(
-        mergeMap(data => this.bindMessageHandler(data, handlers, process)),
-        filter(result => result),
+        mergeMap((data) => this.bindMessageHandler(data, handlers, process)),
+        filter((result) => result),
       )
-      .subscribe(response => client.send(JSON.stringify(response)));
+      .subscribe((response) => client.send(JSON.stringify(response)));
   }
 
   bindMessageHandler(
@@ -36,7 +36,7 @@ export class WsAdapter implements WebSocketAdapter {
     console.log(buffer.data);
     const message = JSON.parse(buffer.data);
     const messageHandler = handlers.find(
-      handler => handler.message === message.event,
+      (handler) => handler.message === message.event,
     );
     if (!messageHandler) {
       return EMPTY;
