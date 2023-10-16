@@ -8,7 +8,7 @@ type ECDSAKeyPairBuffer = {
 
 export class ECDSAKeygen {
   constructor(
-    private readonly namedCurve: string,
+    private readonly namedCurve: 'P-256' | 'P-384' | 'P-521' ,
   ) {}
 
   async generateECDSAkey(): Promise<ECDSAKeyPair>{
