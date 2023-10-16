@@ -6,8 +6,4 @@ export class MessagingService {
   constructor(
     @Inject('AMQPLIB') private readonly amqpConnection: AmqpConnection,
   ) {}
-
-  void addListener() {
-    
-  }
 }
